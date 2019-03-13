@@ -10,19 +10,40 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    enum ImageSourceType: Int {
+        case camera = 0, album
+    }
     
+    @IBOutlet weak var pickCameraButton: UIBarButtonItem!
+    
+    @IBOutlet weak var pickAlbumButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pickCameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
 
-    @IBAction func pickImage(_ sender:Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        present(pickerController, animated: true, completion: nil)
+    @IBAction func pickImage(_ sender: UIBarButtonItem) {
+        // Determine source type: Camera or Album form button tag
+        var sourceType: UIImagePickerController.SourceType
+        switch(ImageSourceType(rawValue: sender.tag)!) {
+        case .camera:
+            sourceType = UIImagePickerController.SourceType.camera
+        case .album:
+            sourceType = UIImagePickerController.SourceType.photoLibrary
+        }
+
+        // Initialize and show the image picker
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        present(imagePicker, animated: true, completion: nil)
     }
 
+    // MARK: UIImagePickerControllerDelegate methods
+    // User Picked an image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
         
@@ -31,6 +52,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //User cancel image picked
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("Canceled")
         dismiss(animated: true, completion: nil)

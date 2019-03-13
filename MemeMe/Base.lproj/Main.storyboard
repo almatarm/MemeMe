@@ -35,9 +35,13 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RzO-Fg-bZN"/>
-                                    <barButtonItem systemItem="camera" id="jle-OJ-jLl"/>
+                                    <barButtonItem systemItem="camera" id="jle-OJ-jLl">
+                                        <connections>
+                                            <action selector="pickImage:" destination="BYZ-38-t0r" id="XDA-N0-fs2"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="HtZ-XL-kVd"/>
-                                    <barButtonItem title="Album" id="PyP-Qh-06u">
+                                    <barButtonItem tag="1" title="Album" id="PyP-Qh-06u">
                                         <connections>
                                             <action selector="pickImage:" destination="BYZ-38-t0r" id="k9r-U6-YsB"/>
                                         </connections>
@@ -85,6 +89,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="qJ6-LL-0qx" id="kQO-LG-rx8"/>
+                        <outlet property="pickAlbumButton" destination="PyP-Qh-06u" id="ST5-3A-Q9u"/>
+                        <outlet property="pickCameraButton" destination="jle-OJ-jLl" id="c1I-Hw-19P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
