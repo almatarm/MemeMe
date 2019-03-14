@@ -9,7 +9,6 @@
 import UIKit
 
 class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var keyboardHeight : CGFloat = 226
     
     enum ImageSourceType: Int {
         case camera = 0, album
@@ -53,7 +52,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        unsubscribeFromKeyboardNotifications()
+        removeKeyboardObservers()
     }
 
     // MARK: Configure GUI
@@ -118,64 +117,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Keyboard Hide/Show
-    func addKeyboardObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ notification:Notification) {
-        self.keyboardHeight = self.getKeyboardHeight(notification)
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if keyboardSize.height != 0 && self.keyboardHeight > keyboardSize.height {
-                keyboardHeight = keyboardSize.height
-            }
-            if isKeyboardOverUI(notification, self.getActiveUIControl()) {
-                moveFrameUp()
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification:Notification) {
-        moveFrameBack()
-    }
-    
-    func moveFrameUp() {
-        if self.view.frame.origin.y != self.view.frame.origin.y - keyboardHeight {
-            self.view.frame.origin.y =  -keyboardHeight
-        }
-    }
-    
-    func moveFrameBack() {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
-    }
-    
-    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.cgRectValue.height
-    }
-    
-    func isKeyboardOverUI(_ notification: Notification, _ control: UIControl?) -> Bool {
-        if let control = control {
-            keyboardHeight = getKeyboardHeight(notification)
-            return control.frame.maxY > self.view.frame.height - keyboardHeight + 32
-        }
-        return false
-    }
-    
-    func getActiveUIControl() -> UIControl? {
-        for subview in view.subviews as [UIView] {
-            if let control = subview as? UIControl {
-                if control.isFirstResponder {
-                    return control
-                }
-            }
-        }
-        return nil
-    }
     
     // MARK: Saving and Sharing Memes
     @IBAction func share() {

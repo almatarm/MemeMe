@@ -13,6 +13,7 @@
 		44375DDA223906A800302313 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44375DD9223906A800302313 /* Assets.xcassets */; };
 		44375DDD223906A800302313 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44375DDB223906A800302313 /* LaunchScreen.storyboard */; };
 		44436B1A22399B0800BB3D14 /* MemeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44436B1922399B0800BB3D14 /* MemeTextFieldDelegate.swift */; };
+		44436B1C223A923600BB3D14 /* MemeVC+KeyboardAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44436B1B223A923500BB3D14 /* MemeVC+KeyboardAdjustment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		44375DDC223906A800302313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44375DDE223906A800302313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44436B1922399B0800BB3D14 /* MemeTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTextFieldDelegate.swift; sourceTree = "<group>"; };
+		44436B1B223A923500BB3D14 /* MemeVC+KeyboardAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemeVC+KeyboardAdjustment.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				44375DDB223906A800302313 /* LaunchScreen.storyboard */,
 				44375DDE223906A800302313 /* Info.plist */,
 				44436B1922399B0800BB3D14 /* MemeTextFieldDelegate.swift */,
+				44436B1B223A923500BB3D14 /* MemeVC+KeyboardAdjustment.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				44375DD5223906A600302313 /* MemeViewController.swift in Sources */,
 				44436B1A22399B0800BB3D14 /* MemeTextFieldDelegate.swift in Sources */,
+				44436B1C223A923600BB3D14 /* MemeVC+KeyboardAdjustment.swift in Sources */,
 				44375DD3223906A600302313 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
