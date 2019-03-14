@@ -14,6 +14,13 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     enum ImageSourceType: Int {
         case camera = 0, album
     }
+    
+    struct Meme {
+        var topText: String
+        var bottomText: String
+        var originalImage: UIImage
+        var memedImage: UIImage
+    }
 
     static let TopInitText = "TOP"
     static let BottomInitText = "BOTTOM"
@@ -26,6 +33,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    @IBOutlet weak var topToolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,4 +173,26 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return nil
     }
     
+    // MARK: Saving and Sharing Memes
+    @IBAction func save() {
+        // Create the meme
+//        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        imageView.image = generateMemedImage()
+    }
+    
+    func generateMemedImage() -> UIImage {
+        topToolbar.isHidden = true
+        bottomToolbar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        topToolbar.isHidden = false
+        bottomToolbar.isHidden = false
+        
+        return memedImage
+    }
 }
