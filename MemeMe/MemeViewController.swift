@@ -24,6 +24,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     static let TopInitText = "TOP"
     static let BottomInitText = "BOTTOM"
     
+    var meme: Meme?
+    
     var topTextFieldDelegate = MemeTextFieldDelegate()
     var bottomTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -122,20 +124,19 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func share() {
         let memedImage = generateMemedImage()
         let items = [memedImage]
-        let activityView = UIActivityViewController(activityItems: items,
-                                                    applicationActivities: nil)
+        let activityView = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityView.completionWithItemsHandler = { activity, success, items, error in
-            self.save()
+            if success {
+                self.save()
+            }
         }
-        
         present(activityView, animated: true)
     }
     
+    //Save a meme
     func save() {
-         //Create the meme
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
-        // We should do something with this meme ..
-        if meme.originalImage != nil {}
+        // Create the meme
+        meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
     }
     
     func generateMemedImage() -> UIImage {
