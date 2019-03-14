@@ -8,21 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     enum ImageSourceType: Int {
         case camera = 0, album
     }
+
+    static let TopInitText = "TOP"
+    static let BottomInitText = "BOTTOM"
+    
+    var topTextFieldDelegate = MemeTextFieldDelegate()
+    var bottomTextFieldDelegate = MemeTextFieldDelegate()
     
     @IBOutlet weak var pickCameraButton: UIBarButtonItem!
-    
     @IBOutlet weak var pickAlbumButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Do we have a camera
         pickCameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        configureUI()
     }
 
     @IBAction func pickImage(_ sender: UIBarButtonItem) {
@@ -42,6 +51,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
 
+    // MARK: Configure GUI
+    func configureUI() {
+        //Setup Text fields font
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth: -4.0
+        ]
+        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        
+        topTextField.text = MemeViewController.TopInitText
+        bottomTextField.text = MemeViewController.BottomInitText
+        
+        topTextField.textAlignment = .center
+        bottomTextField.textAlignment = .center
+        
+        //Text Fields delegates
+        topTextFieldDelegate.defaultText = MemeViewController.TopInitText
+        bottomTextFieldDelegate.defaultText = MemeViewController.BottomInitText
+        
+        topTextField.delegate = topTextFieldDelegate
+        bottomTextField.delegate = bottomTextFieldDelegate
+    }
+    
     // MARK: UIImagePickerControllerDelegate methods
     // User Picked an image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
