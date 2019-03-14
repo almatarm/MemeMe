@@ -21,8 +21,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qJ6-LL-0qx">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="FBM-8f-dmP">
-                                <rect key="frame" x="104.5" y="543" width="166" height="48"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-zb-hou">
+                                <rect key="frame" x="0.0" y="96" width="375" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="FBM-8f-dmP">
+                                <rect key="frame" x="0.0" y="543" width="375" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -68,13 +75,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-zb-hou">
-                                <rect key="frame" x="148" y="96" width="79" height="48"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -84,13 +84,15 @@
                             <constraint firstItem="wHg-zb-hou" firstAttribute="top" secondItem="qJ6-LL-0qx" secondAttribute="top" constant="32" id="8NS-CA-aag"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="d7c-uG-GAt" secondAttribute="top" id="Aj6-WD-6YX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Lzt-s4-aq8" secondAttribute="bottom" id="Ejc-td-lri"/>
-                            <constraint firstItem="FBM-8f-dmP" firstAttribute="centerX" secondItem="qJ6-LL-0qx" secondAttribute="centerX" id="IJm-7r-fM3"/>
-                            <constraint firstItem="wHg-zb-hou" firstAttribute="centerX" secondItem="qJ6-LL-0qx" secondAttribute="centerX" id="LTX-Xr-zfX"/>
+                            <constraint firstItem="FBM-8f-dmP" firstAttribute="leading" secondItem="qJ6-LL-0qx" secondAttribute="leading" id="LRX-Fb-GSi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d7c-uG-GAt" secondAttribute="trailing" id="P3q-ye-nfd"/>
                             <constraint firstItem="FBM-8f-dmP" firstAttribute="bottom" secondItem="qJ6-LL-0qx" secondAttribute="bottom" constant="-32" id="YB6-L3-URH"/>
                             <constraint firstItem="Lzt-s4-aq8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c2f-o9-NGz"/>
+                            <constraint firstItem="wHg-zb-hou" firstAttribute="leading" secondItem="qJ6-LL-0qx" secondAttribute="leading" id="gyZ-10-Nih"/>
                             <constraint firstItem="qJ6-LL-0qx" firstAttribute="top" secondItem="d7c-uG-GAt" secondAttribute="bottom" id="kP0-tT-oBZ"/>
+                            <constraint firstItem="wHg-zb-hou" firstAttribute="trailing" secondItem="qJ6-LL-0qx" secondAttribute="trailing" id="lfa-NZ-CzA"/>
                             <constraint firstItem="Lzt-s4-aq8" firstAttribute="firstBaseline" secondItem="qJ6-LL-0qx" secondAttribute="baseline" symbolType="layoutAnchor" id="nUL-Ba-ILy"/>
+                            <constraint firstItem="FBM-8f-dmP" firstAttribute="trailing" secondItem="qJ6-LL-0qx" secondAttribute="trailing" id="qPc-mf-PsA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lzt-s4-aq8" secondAttribute="trailing" id="u3S-lW-zDS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
