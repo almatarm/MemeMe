@@ -34,23 +34,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         configureUI()
     }
 
-    @IBAction func pickImage(_ sender: UIBarButtonItem) {
-        // Determine source type: Camera or Album form button tag
-        var sourceType: UIImagePickerController.SourceType
-        switch(ImageSourceType(rawValue: sender.tag)!) {
-        case .camera:
-            sourceType = UIImagePickerController.SourceType.camera
-        case .album:
-            sourceType = UIImagePickerController.SourceType.photoLibrary
-        }
-
-        // Initialize and show the image picker
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = sourceType
-        present(imagePicker, animated: true, completion: nil)
-    }
-
     // MARK: Configure GUI
     func configureUI() {
         //Setup Text fields font
@@ -78,9 +61,26 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         bottomTextField.delegate = bottomTextFieldDelegate
     }
     
-    // MARK: UIImagePickerControllerDelegate methods
-    // User Picked an image
+    // MARK: Picking and displaying an image
+    @IBAction func pickImage(_ sender: UIBarButtonItem) {
+        // Determine source type: Camera or Album form button tag
+        var sourceType: UIImagePickerController.SourceType
+        switch(ImageSourceType(rawValue: sender.tag)!) {
+        case .camera:
+            sourceType = UIImagePickerController.SourceType.camera
+        case .album:
+            sourceType = UIImagePickerController.SourceType.photoLibrary
+        }
+
+        // Initialize and show the image picker
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        present(imagePicker, animated: true, completion: nil)
+    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // User Picked an image
         dismiss(animated: true, completion: nil)
         
         if let image = info[.originalImage] as? UIImage {
@@ -88,9 +88,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    //User cancel image picked
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("Canceled")
+        //User cancel image picked
         dismiss(animated: true, completion: nil)
     }
 }
