@@ -70,9 +70,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         
-        topTextField.text = MemeViewController.TopInitText
-        bottomTextField.text = MemeViewController.BottomInitText
-        
         topTextField.textAlignment = .center
         bottomTextField.textAlignment = .center
         
@@ -83,7 +80,15 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         topTextField.delegate = topTextFieldDelegate
         bottomTextField.delegate = bottomTextFieldDelegate
         
+        reset()
+    }
+    
+    @IBAction func reset() {
+        topTextField.text = MemeViewController.TopInitText
+        bottomTextField.text = MemeViewController.BottomInitText
         shareButton.isEnabled = false
+        imageView.image = nil
+        meme = nil
     }
     
     // MARK: Picking and displaying an image

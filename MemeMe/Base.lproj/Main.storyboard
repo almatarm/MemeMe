@@ -61,7 +61,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nDA-VA-BoP"/>
-                                    <barButtonItem systemItem="cancel" id="uGC-zC-w1I"/>
+                                    <barButtonItem systemItem="cancel" id="uGC-zC-w1I">
+                                        <connections>
+                                            <action selector="reset" destination="BYZ-38-t0r" id="bqE-Vm-23V"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-zb-hou">
