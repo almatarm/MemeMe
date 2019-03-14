@@ -37,6 +37,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var topToolbar: UIToolbar!
     
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,6 +81,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         topTextField.delegate = topTextFieldDelegate
         bottomTextField.delegate = bottomTextFieldDelegate
+        
+        shareButton.isEnabled = false
     }
     
     // MARK: Picking and displaying an image
@@ -106,6 +109,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
+            shareButton.isEnabled = true
         }
     }
     
@@ -174,10 +178,23 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     // MARK: Saving and Sharing Memes
-    @IBAction func save() {
-        // Create the meme
-//        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
-        imageView.image = generateMemedImage()
+    @IBAction func share() {
+        let memedImage = generateMemedImage()
+        let items = [memedImage]
+        let activityView = UIActivityViewController(activityItems: items,
+                                                    applicationActivities: nil)
+        activityView.completionWithItemsHandler = { activity, success, items, error in
+            self.save()
+        }
+        
+        present(activityView, animated: true)
+    }
+    
+    func save() {
+         //Create the meme
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        // We should do something with this meme ..
+        if meme.originalImage != nil {}
     }
     
     func generateMemedImage() -> UIImage {
