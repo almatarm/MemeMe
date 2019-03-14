@@ -116,7 +116,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if keyboardSize.height != 0 && self.keyboardHeight > keyboardSize.height {
                 keyboardHeight = keyboardSize.height
             }
-            if isKeyboardOverUI(notification, self.getSelectedTextField() ?? UITextField()) {
+            if isKeyboardOverUI(notification, self.getActiveUIControl()) {
                 moveFrameUp()
             }
         }
@@ -144,31 +144,23 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return keyboardSize.cgRectValue.height
     }
     
-    func isKeyboardOverUI(_ notification: Notification, _ view: UITextField) -> Bool {
-        keyboardHeight = getKeyboardHeight(notification)
-        return view.frame.maxY > self.view.frame.height - keyboardHeight + 32
+    func isKeyboardOverUI(_ notification: Notification, _ control: UIControl?) -> Bool {
+        if let control = control {
+            keyboardHeight = getKeyboardHeight(notification)
+            return control.frame.maxY > self.view.frame.height - keyboardHeight + 32
+        }
+        return false
     }
     
-    // https://stackoverflow.com/questions/30918732/how-to-determine-which-textfield-is-active-swift
-    func getSelectedTextField() -> UITextField? {
-        let totalTextFields = self.getTextFieldsInView(view: self.view)
-        for textField in totalTextFields{
-            if textField.isFirstResponder{
-                return textField
+    func getActiveUIControl() -> UIControl? {
+        for subview in view.subviews as [UIView] {
+            if let control = subview as? UIControl {
+                if control.isFirstResponder {
+                    return control
+                }
             }
         }
         return nil
     }
     
-    func getTextFieldsInView(view: UIView) -> [UITextField] {
-        var totalTextFields = [UITextField]()
-        for subview in view.subviews as [UIView] {
-            if let textField = subview as? UITextField {
-                totalTextFields += [textField]
-            } else {
-                totalTextFields += getTextFieldsInView(view: subview)
-            }
-        }
-        return totalTextFields
-    }
 }
