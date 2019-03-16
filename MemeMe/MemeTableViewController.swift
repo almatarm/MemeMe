@@ -16,6 +16,7 @@ class MemeTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        self.title = "Sent Memes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showMemeEditor))
     }
     
@@ -41,6 +42,12 @@ class MemeTableViewController: UITableViewController {
         cell?.imageView?.image = meme.memedImage
         
         return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let memeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        memeDetailVC.meme = memes[(indexPath as NSIndexPath).row]
+        self.navigationController!.pushViewController(memeDetailVC, animated: true)
     }
     
     //Define the height of the cell

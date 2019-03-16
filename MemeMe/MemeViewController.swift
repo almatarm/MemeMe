@@ -104,16 +104,6 @@ class MemeViewController: UIViewController {
         // Store it to memes array in App Delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
-        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {

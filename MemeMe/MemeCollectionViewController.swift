@@ -18,6 +18,7 @@ class MemeCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     override func viewDidLoad() {
+        self.title = "Sent Memes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showMemeEditor))
     }
     
@@ -35,7 +36,6 @@ class MemeCollectionViewController: UICollectionViewController {
     
     func setupFlowLayout() {
         // show 3 cells in portrait and 5 in landscape mode
-        
         let width = UIDevice.current.orientation.isPortrait ? min(view.frame.size.height, view.frame.size.width) :
             max(view.frame.size.height, view.frame.size.width)
         let cellCount: CGFloat = UIDevice.current.orientation.isPortrait ? 3.0 : 5.0
@@ -62,6 +62,12 @@ class MemeCollectionViewController: UICollectionViewController {
         let meme = self.memes[(indexPath as NSIndexPath).row]
         cell.memeImage.image = meme.memedImage
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let memeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        memeDetailVC.meme = memes[(indexPath as NSIndexPath).row]
+        self.navigationController!.pushViewController(memeDetailVC, animated: true)
     }
     
 }
