@@ -74,10 +74,10 @@
 				44375DD6223906A600302313 /* Main.storyboard */,
 				44375DD9223906A800302313 /* Assets.xcassets */,
 				44375DDB223906A800302313 /* LaunchScreen.storyboard */,
-				44375DDE223906A800302313 /* Info.plist */,
+				44726577223CDF44009C15A7 /* MemeTableViewController.swift */,
 				44436B1922399B0800BB3D14 /* MemeTextFieldDelegate.swift */,
 				44726575223C0367009C15A7 /* MemeCollectionViewController.swift */,
-				44726577223CDF44009C15A7 /* MemeTableViewController.swift */,
+				44375DDE223906A800302313 /* Info.plist */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";

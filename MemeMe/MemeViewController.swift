@@ -71,11 +71,15 @@ class MemeViewController: UIViewController {
         textField.delegate = memeDelegate
     }
     
-    @IBAction func reset() {
+    func reset() {
         topTextField.text = MemeViewController.TopInitText
         bottomTextField.text = MemeViewController.BottomInitText
         shareButton.isEnabled = false
         imageView.image = nil
+    }
+    
+    @IBAction func dismiss() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: Saving and Sharing Memes
@@ -86,6 +90,7 @@ class MemeViewController: UIViewController {
         activityView.completionWithItemsHandler = { activity, success, items, error in
             if success {
                 self.save()
+                self.dismiss()
             }
         }
         present(activityView, animated: true)
