@@ -24,6 +24,27 @@ class MemeCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.reloadData()
+        setupFlowLayout()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        // handle number of cells in flowlayout when device orientation changed
+        super.viewWillTransition(to: size, with: coordinator)
+        setupFlowLayout()
+    }
+    
+    func setupFlowLayout() {
+        // show 3 cells in portrait and 5 in landscape mode
+        
+        let width = UIDevice.current.orientation.isPortrait ? min(view.frame.size.height, view.frame.size.width) :
+            max(view.frame.size.height, view.frame.size.width)
+        let cellCount: CGFloat = UIDevice.current.orientation.isPortrait ? 3.0 : 5.0
+        let space: CGFloat = cellCount
+        let dimension = (width - ((cellCount - 1) * space)) / cellCount
+        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
     }
     
     @objc func showMemeEditor() {
@@ -43,19 +64,4 @@ class MemeCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: MemeTableViewController.CellIdentifier)
-//        let meme = self.memes[(indexPath as NSIndexPath).row]
-//
-//        cell?.textLabel?.text = meme.topText + "..." + meme.bottomText
-//        cell?.imageView?.image = meme.memedImage
-//
-//        return cell!
-//    }
-//
-//    //Define the height of the cell
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 72
-//    }
-//
 }

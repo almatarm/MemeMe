@@ -205,12 +205,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="147" height="125"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jFr-Si-u0m">
-                                            <rect key="frame" x="10" y="9" width="137" height="116"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jFr-Si-u0m">
+                                            <rect key="frame" x="0.0" y="0.0" width="147" height="125"/>
                                         </imageView>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jFr-Si-u0m" secondAttribute="bottom" id="6bE-t6-MBk"/>
+                                    <constraint firstItem="jFr-Si-u0m" firstAttribute="leading" secondItem="sxA-RR-hMF" secondAttribute="leading" id="Guv-Oj-DGf"/>
+                                    <constraint firstAttribute="trailing" secondItem="jFr-Si-u0m" secondAttribute="trailing" id="lHw-qn-njF"/>
+                                    <constraint firstItem="jFr-Si-u0m" firstAttribute="top" secondItem="sxA-RR-hMF" secondAttribute="top" id="zjd-la-huq"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="memeImage" destination="jFr-Si-u0m" id="I4X-jw-yLo"/>
                                 </connections>
@@ -222,6 +227,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="DNJ-Pr-Bj5"/>
+                    <connections>
+                        <outlet property="flowLayout" destination="55T-7y-M0g" id="3FH-KH-Os7"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCi-Sh-ar6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
