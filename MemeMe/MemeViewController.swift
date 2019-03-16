@@ -12,8 +12,6 @@ class MemeViewController: UIViewController {
     static let TopInitText = "TOP"
     static let BottomInitText = "BOTTOM"
     
-    var meme: Meme?
-    
     var topTextFieldDelegate = MemeTextFieldDelegate()
     var bottomTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -78,7 +76,6 @@ class MemeViewController: UIViewController {
         bottomTextField.text = MemeViewController.BottomInitText
         shareButton.isEnabled = false
         imageView.image = nil
-        meme = nil
     }
     
     // MARK: Saving and Sharing Memes
@@ -97,7 +94,11 @@ class MemeViewController: UIViewController {
     //Save a meme
     func save() {
         // Create the meme
-        meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        
+        // Store it to memes array in App Delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
